@@ -1,5 +1,5 @@
 {
-	"name": "tinytime",
+	"name": "@atulin/tinytime",
 	"version": "1.0.0",
 	"exports": ["./dist/tinytime.js", "./dist/tinytime.min.js"],
 	"license": "MIT",

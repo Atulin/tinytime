@@ -1,4 +1,4 @@
-﻿name: Publish Package to npm
+﻿name: Publish to NPM and JSR
 
 # Trigger this workflow whenever a new release is published
 on:
@@ -39,7 +39,7 @@ jobs:
       - name: Publish to NPM
         run: bun publish --access public
         env:
-          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_TOKEN: ${{ secrets.NPM_SECRET }}
 
       - name: Publish to JSR
         run: bunx jsr publish
