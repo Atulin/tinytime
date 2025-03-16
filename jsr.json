@@ -1,6 +1,6 @@
-﻿{
+{
 	"$schema": "https://jsr.io/schema/config-file.v1.json",
-	"name": "@atulin/tinytime",
+	"name": "@angius/tinytime",
 	"version": "1.0.0",
 	"license": "MIT",
 	"exports": "./src/tinytime.ts"
