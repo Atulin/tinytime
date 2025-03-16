@@ -38,6 +38,7 @@ jobs:
 
       - name: Publish to NPM
         run: bun publish --access public
+        continue-on-error: true
         env:
           NPM_CONFIG_TOKEN: ${{ secrets.NPM_SECRET }}
 
