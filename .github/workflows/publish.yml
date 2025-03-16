@@ -2,6 +2,7 @@
 
 # Trigger this workflow whenever a new release is published
 on:
+  workflow_dispatch:
   push:
     tags:
       - 'v*'
