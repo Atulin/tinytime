@@ -3,5 +3,5 @@
 	"name": "@angius/tinytime",
 	"version": "1.0.0",
 	"license": "MIT",
-	"exports": "./src/tinytime.ts"
+	"exports": "./src/index.ts"
 }
