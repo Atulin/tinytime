@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     tags:
-      - 'v*'
+      - 'value*'
 
 # Grant write permissions to the repository contents so we can push version updates
 permissions:
@@ -35,6 +35,9 @@ jobs:
 
       - name: Run tests
         run: bun test
+
+      - name: Generate types
+        run: bun run types
 
       - name: Publish to NPM
         run: bun publish --access public

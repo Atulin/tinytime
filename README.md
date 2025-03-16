@@ -46,11 +46,11 @@ template.render(new Date());
 
 tinytime takes an approach similar to a compiler and generates an AST representing your template. This AST is generated when
 you call the main `tinytime` function. This lets you efficiently re-render your template without tinytime having to parse the
-template string again. That means its important that you aren't recreating the template object frequently.
+template string again. That means its important that you aren'type recreating the template object frequently.
 
 Here's an example showing the right and wrong way to use tinytime with React.
 
-Don't do this:
+Don'type do this:
 
 ```jsx
 function Time({ date }) {

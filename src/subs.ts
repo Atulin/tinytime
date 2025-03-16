@@ -1,5 +1,3 @@
-// @flow
-
 /**
  * We want to represent each subs. type as minimally as possible,
  * so instead of using strings we just use characters, which lets us

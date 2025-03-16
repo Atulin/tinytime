@@ -1,7 +1,8 @@
 {
 	"name": "@angius/tinytime",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"exports": ["./dist/tinytime.js", "./dist/tinytime.min.js"],
+	"types": "./dist/tinytime.d.ts",
 	"license": "MIT",
 	"keywords": ["date", "time", "formatter"],
 	"type": "module",
@@ -12,12 +13,14 @@
 	"scripts": {
 		"build": "bun build ./src/index.ts --outdir dist",
 		"test": "bun test",
-		"prepublish": "bun run build",
+		"types": "bunx tsc",
+		"prepublish": "bun run build && bun run types",
 		"fix": "bunx biome check --fix"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
 		"@types/bun": "latest",
+		"dts-bundle-generator": "^9.5.1",
 		"jsr": "^0.13.4"
 	},
 	"peerDependencies": {

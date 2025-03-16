@@ -1,16 +1,6 @@
-// @flow
 import { SubToTypeIdentifierMap, UserText } from "./subs";
 
-/**
- * t is type and v is value. Minified property
- * names are being used because the current minification
- * step does not mangle property names, and we want to
- * reduce bundle size as much as possible.
- */
-export type Token = {
-	t: string;
-	v?: string;
-};
+export type Token = [type: string, value?: string];
 
 /**
  * Rather than using a bunch of potentially confusing regular
@@ -59,10 +49,7 @@ export default function parser(template: string): Token[] {
 		if (char === "{") {
 			// Push any `UserText` we've accumulated and reset the `text` variable.
 			if (text) {
-				tokens.push({
-					t: UserText,
-					v: text,
-				});
+				tokens.push([UserText, text]);
 			}
 			text = "";
 			let sub = "";
@@ -75,9 +62,7 @@ export default function parser(template: string): Token[] {
 			if (!identifier) {
 				throw new Error(`Unknown substitution: ${sub}`);
 			}
-			tokens.push({
-				t: identifier,
-			});
+			tokens.push([identifier]);
 		}
 		// Anything not inside brackets is just plain text.
 		else {
@@ -89,10 +74,7 @@ export default function parser(template: string): Token[] {
 	 * the template ends with some `UserText`.
 	 */
 	if (text) {
-		tokens.push({
-			t: UserText,
-			v: text,
-		});
+		tokens.push([UserText, text]);
 	}
 	return tokens;
 }

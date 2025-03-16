@@ -17,10 +17,6 @@ import {
 	UserText,
 } from "./subs";
 
-/**
- * These types help ensure we don't misspell them anywhere. They will be
- * removed during build.
- */
 const months = [
 	"January",
 	"February",
@@ -35,7 +31,6 @@ const months = [
 	"November",
 	"December",
 ] as const;
-type Months = (typeof months)[number];
 
 const days = [
 	"Sunday",
@@ -46,7 +41,6 @@ const days = [
 	"Friday",
 	"Saturday",
 ] as const;
-type Days = (typeof days)[number];
 
 /**
  * Takes an integer and returns a string left padded with
@@ -60,13 +54,15 @@ function padWithZeros(int: number): string {
  * Adds suffix to day, so 16 becomes 16th.
  */
 function suffix(int: number): string {
-	return int % 10 === 1 && int !== 11
-		? `${int}st`
-		: int % 10 === 2 && int !== 12
-			? `${int}nd`
-			: int % 10 === 3 && int !== 13
-				? `${int}rd`
-				: `${int}th`;
+	const suf =
+		int % 10 === 1 && int !== 11
+			? "st"
+			: int % 10 === 2 && int !== 12
+				? "nd"
+				: int % 10 === 3 && int !== 13
+					? "rd"
+					: "th";
+	return `${int}${suf}`;
 }
 
 /**
@@ -99,9 +95,9 @@ export default function compiler(
 			break;
 		}
 
-		switch (token.t) {
+		switch (token[0]) {
 			case UserText:
-				compiled += token.v;
+				compiled += token[1];
 				break;
 
 			case Day:
@@ -130,7 +126,7 @@ export default function compiler(
 				break;
 
 			case PartialYear:
-				compiled += `${year}`.slice(2);
+				compiled += `${year % 100}`;
 				break;
 
 			case DayOfTheWeek:
@@ -143,7 +139,7 @@ export default function compiler(
 
 			case Hour:
 				{
-					const hour = hours === 0 || hours === 12 ? 12 : hours % 12;
+					const hour = hours % 12 || 12;
 					compiled += options.padHours ? padWithZeros(hour) : hour;
 				}
 				break;

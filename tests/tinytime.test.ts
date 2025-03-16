@@ -17,7 +17,9 @@ describe("tinytime", () => {
 	});
 	describe("rendering", () => {
 		it("should let you render with a date/time", () => {
-			expect(render("{h}:{mm}:{ss}{a} on a {dddd}.")).toEqual("9:07:30PM on a Thursday.");
+			expect(render("{h}:{mm}:{ss}{a} on a {dddd}.")).toEqual(
+				"9:07:30PM on a Thursday.",
+			);
 		});
 		it("full months", () => {
 			expect(render("{MMMM}")).toEqual("September");
@@ -63,12 +65,14 @@ describe("tinytime", () => {
 			expect(rendered).toEqual("09");
 		});
 		it("user text with substitutions", () => {
-			expect(render("It was {h}:{mm}:{ss}{a} on {MMMM} {Do}, {YYYY}.")).toEqual(
-				"It was 9:07:30PM on September 24th, 1992.",
-			);
+			expect(
+				render("It was {h}:{mm}:{ss}{a} on {MMMM} {Do}, {YYYY}."),
+			).toEqual("It was 9:07:30PM on September 24th, 1992.");
 		});
 		it("sundays", () => {
-			expect(tinytime("{dddd}").render(new Date("May 7, 2017"))).toEqual("Sunday");
+			expect(tinytime("{dddd}").render(new Date("May 7, 2017"))).toEqual(
+				"Sunday",
+			);
 		});
 	});
 });

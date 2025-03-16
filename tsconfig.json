@@ -5,6 +5,10 @@
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
-		"skipLibCheck": true
-	}
+		"skipLibCheck": true,
+		"declaration": true,
+		"outFile": "dist/tinytime.d.ts",
+		"emitDeclarationOnly": true
+	},
+	"exclude": ["dist"]
 }
