@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     tags:
-      - 'value*'
+      - 'v*'
 
 # Grant write permissions to the repository contents so we can push version updates
 permissions:
