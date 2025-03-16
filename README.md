@@ -2,9 +2,10 @@
 # Tinytime ⏰
 > A straightforward date and time formatter in <850b.
 
-<a href="https://www.npmjs.org/package/tinytime">
-    <img src="https://img.shields.io/npm/v/tinytime.svg?style=flat" alt="npm">
-</a>
+[![Publish to NPM and JSR](https://github.com/Atulin/tinytime/actions/workflows/publish.yml/badge.svg)](https://github.com/Atulin/tinytime/actions/workflows/publish.yml)
+[![NPM Version](https://img.shields.io/npm/v/%40angius%2Ftinytime)](https://www.npmjs.com/package/@angius/tinytime)
+[![JSR Version](https://img.shields.io/jsr/v/%40angius/tinytime?color=f7df1e)](https://jsr.io/@angius/tinytime)
+
 
 ## API
 
