@@ -1,11 +1,10 @@
 
 # Tinytime ⏰
-> A straightforward date and time formatter in <800b.
+> A straightforward date and time formatter in <850b.
 
 <a href="https://www.npmjs.org/package/tinytime">
     <img src="https://img.shields.io/npm/v/tinytime.svg?style=flat" alt="npm">
-  </a> <a href="https://travis-ci.org/aweary/tinytime">
-  <img src="https://travis-ci.org/aweary/tinytime.svg?branch=master" alt="travis"></a>
+</a>
 
 ## API
 
@@ -14,7 +13,7 @@ takes a `Date` and returns a string with the rendered data.
 
 ```js
 
-import tinytime from 'tinytime';
+import { tinytime } from 'tinytime';
 const template = tinytime('The time is {h}:{mm}:{ss}{a}.');
 template.render(new Date());
 // The time is 11:10:20PM.
@@ -82,4 +81,4 @@ Using one of the plugins below, you can resolve this efficiency concern at compi
 
 [`babel-plugin-transform-tinytime`](http://npm.im/babel-plugin-transform-tinytime) - Hoists `tinytime` calls out of the JSX render scope.
 
-[`babel-plugin-tinytime`](https://www.npmjs.com/package/babel-plugin-tinytime) - Hoists `tinytime` calls out of the current scope, regardless if its inside JSX or a ordinary function scope. 
+[`babel-plugin-tinytime`](https://www.npmjs.com/package/babel-plugin-tinytime) - Hoists `tinytime` calls out of the current scope, regardless if its inside JSX or an ordinary function scope. 

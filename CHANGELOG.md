@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0"></a>
+## [1.0.0](https://github.com/atulin/tinytime/compare/v0.2.6...v1.0.0) (2017-06-08)
+
+### Features
+
+* Rewrite in Typescript and Bun
+* Dropped cjs support
+* Fixed typos
+
 <a name="0.2.6"></a>
 ## [0.2.6](https://github.com/aweary/tinytime/compare/v0.2.5...v0.2.6) (2017-06-03)
 

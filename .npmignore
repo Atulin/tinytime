@@ -1,2 +1,6 @@
-node_modules
-__test__
+﻿.idea/
+node_modules/
+tests/
+build.ts
+biome.jsonc
+bun.lock
