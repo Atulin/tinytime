@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { tinytime } from "../src/index";
+import { tinytime } from "../src/tinytime.js";
 
 // My birthday!
 const date = new Date("September 24, 1992 021:07:30");

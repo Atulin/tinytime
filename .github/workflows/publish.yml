@@ -39,9 +39,6 @@ jobs:
       - name: Build
         run: bun run build
 
-      - name: Generate types
-        run: bun run types
-
       - name: Publish to NPM
         run: bun publish --access public
         continue-on-error: true

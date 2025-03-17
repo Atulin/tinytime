@@ -1,4 +1,3 @@
-import type { TinyTimeOptions } from "./index";
 import type { Token } from "./parser";
 import {
 	Day,
@@ -16,6 +15,7 @@ import {
 	Seconds,
 	UserText,
 } from "./subs";
+import type { TinyTimeOptions } from "./tinytime";
 
 const months = [
 	"January",

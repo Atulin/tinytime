@@ -1,10 +1,12 @@
 ﻿import { type BuildConfig, Glob } from "bun";
+import isolatedDecl from "bun-plugin-isolated-decl";
 
 const config = (min: boolean): BuildConfig => ({
-	entrypoints: ["./src/index.ts"],
+	entrypoints: ["./src/tinytime.ts"],
 	outdir: "./dist",
 	format: "esm",
-	naming: min ? "[dir]/tinytime.min.[ext]" : "[dir]/tinytime.[ext]",
+	naming: min ? "[dir]/[name].min.[ext]" : "[dir]/[name].[ext]",
+	plugins: [isolatedDecl({})],
 });
 
 for (const m of [true, false]) {

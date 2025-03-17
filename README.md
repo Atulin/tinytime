@@ -1,11 +1,18 @@
 
 # Tinytime ⏰
-> A straightforward date and time formatter in <850b.
+
+> A straightforward date and time formatter in <840b.
 
 [![Publish to NPM and JSR](https://github.com/Atulin/tinytime/actions/workflows/publish.yml/badge.svg)](https://github.com/Atulin/tinytime/actions/workflows/publish.yml)
 [![NPM Version](https://img.shields.io/npm/v/%40angius%2Ftinytime)](https://www.npmjs.com/package/@angius/tinytime)
 [![JSR Version](https://img.shields.io/jsr/v/%40angius/tinytime?color=f7df1e)](https://jsr.io/@angius/tinytime)
+[![Checked with Biome](https://img.shields.io/badge/Checked_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev)
 
+## This fork
+
+* Proper type definitions
+* More correct code at the cost of 38 more bytes gzipped
+* ESM-only
 
 ## API
 
@@ -24,34 +31,35 @@ template.render(new Date());
 
  * `MMMM` - Full Month (September)
  * `MM` - Partial Month (Sep)
- * `Mo` - Numeric Month (9) <sup>1</sup>
+ * `Mo` - Numeric Month (9) <sup>*</sup>
  * `YYYY` - Full Year (1992)
  * `YY` - Partial Year (92)
  * `dddd` - Day of the Week (Monday)
- * `DD` - Day of the Month (24)
+ * `DD` - Day of the Month (24) <sup>*</sup>
  * `Do` - Day (24th)
- * `h` - Hours - 12h format
- * `H` - Hours - 24h format
+ * `h` - Hours - 12h format <sup>*</sup>
+ * `H` - Hours - 24h format <sup>*</sup>
  * `mm` - Minutes (zero padded)
  * `ss` - Seconds (zero padded)
  * `a` - AM/PM
  
- <sup>1</sup> - you get padded months (`09` instead of `9`) by passing in the `padMonth` option.
- 
- ```js
- const template = tinytime('{Mo}', { padMonth: true })
- ```
+> [!NOTE]
+> <sup>*</sup> you can pad them with zeroes (`09` instead of `9`) by passing in the `padMonths`, `padDays`, `padHours` option.
+>
+> ```js
+> const template = tinytime('{Mo}', { padMonth: true })
+> ```
 
 
 ## Efficiency
 
 tinytime takes an approach similar to a compiler and generates an AST representing your template. This AST is generated when
 you call the main `tinytime` function. This lets you efficiently re-render your template without tinytime having to parse the
-template string again. That means its important that you aren'type recreating the template object frequently.
+template string again. That means its important that you aren't recreating the template object frequently.
 
 Here's an example showing the right and wrong way to use tinytime with React.
 
-Don'type do this:
+Don't do this:
 
 ```jsx
 function Time({ date }) {
