@@ -1,38 +1,41 @@
 /**
  * We want to represent each subs. type as minimally as possible,
- * so instead of using strings we just use characters, which lets us
- * represent 27 individual subs. using a single character each.
+ * so instead of using strings we just use numbers, which lets us
+ * represent 27 individual subs. using a single number each.
  */
 
-export const UserText = "a";
-export const FullMonth = "b";
-export const PartialMonth = "c";
-export const FullYear = "d";
-export const PartialYear = "e";
-export const DayOfTheWeek = "f";
-export const Hour = "g";
-export const Minutes = "h";
-export const Seconds = "i";
-export const PostOrAnteMeridiem = "j";
-export const Day = "k";
-export const DayOfTheMonth = "l";
-export const NumberMonth = "n";
-export const Hour24 = "m";
+// biome-ignore lint/suspicious/noConstEnum: <explanation>
+export const enum Tokens {
+	UserText = 0,
+	FullMonth = 1,
+	PartialMonth = 2,
+	FullYear = 3,
+	PartialYear = 4,
+	DayOfTheWeek = 5,
+	Hour = 6,
+	Minutes = 7,
+	Seconds = 8,
+	PostOrAnteMeridiem = 9,
+	Day = 10,
+	DayOfTheMonth = 11,
+	NumberMonth = 12,
+	Hour24 = 13,
+}
 
 export const SubToTypeIdentifierMap: {
-	[abbreviation: string]: string;
+	[abbreviation: string]: Tokens;
 } = {
-	MMMM: FullMonth,
-	MM: PartialMonth,
-	Mo: NumberMonth,
-	YYYY: FullYear,
-	YY: PartialYear,
-	dddd: DayOfTheWeek,
-	DD: DayOfTheMonth,
-	Do: Day,
-	h: Hour,
-	H: Hour24,
-	mm: Minutes,
-	ss: Seconds,
-	a: PostOrAnteMeridiem,
-};
+	MMMM: Tokens.FullMonth,
+	MM: Tokens.PartialMonth,
+	Mo: Tokens.NumberMonth,
+	YYYY: Tokens.FullYear,
+	YY: Tokens.PartialYear,
+	dddd: Tokens.DayOfTheWeek,
+	DD: Tokens.DayOfTheMonth,
+	Do: Tokens.Day,
+	h: Tokens.Hour,
+	H: Tokens.Hour24,
+	mm: Tokens.Minutes,
+	ss: Tokens.Seconds,
+	a: Tokens.PostOrAnteMeridiem,
+} as const;

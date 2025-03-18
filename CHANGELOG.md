@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+## [1.1.0](https://github.com/atulin/tinytime/compare/v1.0.1...v1.1.0) (2017-06-08)
+
+### Features
+
+* Dropped size under 800 bytes again
+* Added better types and docs
+* More calculations are now done in a branchless way
+* Parser tokens are now typed and inlined as numbers instead of being strings
+
 <a name="1.0.0"></a>
 ## [1.0.0](https://github.com/atulin/tinytime/compare/v0.2.6...v1.0.0) (2017-06-08)
 

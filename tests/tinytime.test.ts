@@ -74,5 +74,8 @@ describe("tinytime", () => {
 				"Sunday",
 			);
 		});
+		it("errors on incorrect template", () => {
+			expect(() => tinytime("{??}:{mm}:{xx}").render(date)).toThrow();
+		});
 	});
 });

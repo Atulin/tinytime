@@ -1,6 +1,6 @@
 {
 	"name": "@angius/tinytime",
-	"version": "1.0.3",
+	"version": "1.1.0",
 	"exports": ["./dist/tinytime.js", "./dist/tinytime.min.js"],
 	"types": "./dist/tinytime.d.ts",
 	"license": "MIT",

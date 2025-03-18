@@ -1,6 +1,6 @@
-import { SubToTypeIdentifierMap, UserText } from "./subs";
+import { SubToTypeIdentifierMap, Tokens } from "./subs";
 
-export type Token = [type: string, value?: string];
+export type Token = [type: Tokens, value?: string];
 
 /**
  * Rather than using a bunch of potentially confusing regular
@@ -33,9 +33,9 @@ export default function parser(template: string): Token[] {
 	 * before and after the substitution. With this template our tokens would look something like:
 	 *
 	 * [
-	 *  { type: UserText, value: "The day is "},
-	 *  { type : DaySub },
-	 *  { type: UserText, value: "." }
+	 *  [ type: UserText, value: "The day is " ],
+	 *  [ type : DaySub ],
+	 *  [ type: UserText, value: "." ]
 	 * ]
 	 *
 	 */
@@ -49,15 +49,18 @@ export default function parser(template: string): Token[] {
 		if (char === "{") {
 			// Push any `UserText` we've accumulated and reset the `text` variable.
 			if (text) {
-				tokens.push([UserText, text]);
+				tokens.push([Tokens.UserText, text]);
 			}
 			text = "";
+
 			let sub = "";
+
 			char = template[position++];
 			while (char !== "}") {
 				sub += char;
 				char = template[position++];
 			}
+
 			const identifier = SubToTypeIdentifierMap[sub];
 			if (!identifier) {
 				throw new Error(`Unknown substitution: ${sub}`);
@@ -74,7 +77,7 @@ export default function parser(template: string): Token[] {
 	 * the template ends with some `UserText`.
 	 */
 	if (text) {
-		tokens.push([UserText, text]);
+		tokens.push([Tokens.UserText, text]);
 	}
 	return tokens;
 }
