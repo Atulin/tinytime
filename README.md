@@ -1,7 +1,7 @@
 
 # Tinytime ⏰
 
-> A straightforward date and time formatter in <840b.
+> A straightforward date and time formatter in 770 bytes.
 
 [![Publish to NPM and JSR](https://github.com/Atulin/tinytime/actions/workflows/publish.yml/badge.svg)](https://github.com/Atulin/tinytime/actions/workflows/publish.yml)
 [![NPM Version](https://img.shields.io/npm/v/%40angius%2Ftinytime)](https://www.npmjs.com/package/@angius/tinytime)
@@ -11,7 +11,7 @@
 ## This fork
 
 * Proper type definitions
-* More correct code at the cost of 38 more bytes gzipped
+* More correct code
 * ESM-only
 
 ## API

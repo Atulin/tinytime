@@ -1,20 +1,5 @@
 import type { Token } from "./parser";
-import {
-	Day,
-	DayOfTheMonth,
-	DayOfTheWeek,
-	FullMonth,
-	FullYear,
-	Hour,
-	Hour24,
-	Minutes,
-	NumberMonth,
-	PartialMonth,
-	PartialYear,
-	PostOrAnteMeridiem,
-	Seconds,
-	UserText,
-} from "./subs";
+import { Tokens } from "./subs";
 import type { TinyTimeOptions } from "./tinytime";
 
 const months = [
@@ -54,14 +39,9 @@ function padWithZeros(int: number): string {
  * Adds suffix to day, so 16 becomes 16th.
  */
 function suffix(int: number): string {
-	const suf =
-		int % 10 === 1 && int !== 11
-			? "st"
-			: int % 10 === 2 && int !== 12
-				? "nd"
-				: int % 10 === 3 && int !== 13
-					? "rd"
-					: "th";
+	const s = ["th", "st", "nd", "rd"];
+	const v = int % 100;
+	const suf = s[(v - 20) % 10] || s[v] || s[0];
 	return `${int}${suf}`;
 }
 
@@ -91,75 +71,55 @@ export default function compiler(
 	while (index < tokens.length) {
 		const token = tokens[index];
 
-		if (!token) {
-			break;
-		}
-
-		switch (token[0]) {
-			case UserText:
+		const tokenHandlers = {
+			[Tokens.UserText]: () => {
 				compiled += token[1];
-				break;
-
-			case Day:
+			},
+			[Tokens.Day]: () => {
 				compiled += suffix(day);
-				break;
-
-			case PartialMonth:
+			},
+			[Tokens.PartialMonth]: () => {
 				compiled += months[month]?.slice(0, 3);
-				break;
-
-			case FullMonth:
+			},
+			[Tokens.FullMonth]: () => {
 				compiled += months[month];
-				break;
-
-			case NumberMonth:
-				{
-					const next = month + 1;
-					compiled += options.padMonth
-						? padWithZeros(next)
-						: `${next}`;
-				}
-				break;
-
-			case FullYear:
+			},
+			[Tokens.NumberMonth]: () => {
+				const next = month + 1;
+				compiled += options.padMonth ? padWithZeros(next) : `${next}`;
+			},
+			[Tokens.FullYear]: () => {
 				compiled += year;
-				break;
-
-			case PartialYear:
+			},
+			[Tokens.PartialYear]: () => {
 				compiled += `${year % 100}`;
-				break;
-
-			case DayOfTheWeek:
+			},
+			[Tokens.DayOfTheWeek]: () => {
 				compiled += days[date.getDay()];
-				break;
-
-			case DayOfTheMonth:
+			},
+			[Tokens.DayOfTheMonth]: () => {
 				compiled += options.padDays ? padWithZeros(day) : day;
-				break;
-
-			case Hour:
-				{
-					const hour = hours % 12 || 12;
-					compiled += options.padHours ? padWithZeros(hour) : hour;
-				}
-				break;
-
-			case Hour24:
+			},
+			[Tokens.Hour]: () => {
+				const hour = hours % 12 || 12;
+				compiled += options.padHours ? padWithZeros(hour) : hour;
+			},
+			[Tokens.Hour24]: () => {
 				compiled += options.padHours ? padWithZeros(hours) : hours;
-				break;
-
-			case Minutes:
+			},
+			[Tokens.Minutes]: () => {
 				compiled += padWithZeros(minutes);
-				break;
-
-			case Seconds:
+			},
+			[Tokens.Seconds]: () => {
 				compiled += padWithZeros(seconds);
-				break;
-
-			case PostOrAnteMeridiem:
+			},
+			[Tokens.PostOrAnteMeridiem]: () => {
 				compiled += hours >= 12 ? "PM" : "AM";
-				break;
-		}
+			},
+		};
+
+		tokenHandlers[token[0]]();
+
 		index++;
 	}
 	return compiled;
