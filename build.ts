@@ -47,6 +47,8 @@ const table = sizes.map(line).join("\n");
 
 console.log(table);
 
+if (process.env.CI === "true") process.exit(0);
+
 const readme = await Bun.file("./README.md").text();
 const newReadme = readme.replace(
 	/(```x-sizes)[\s\S]*(```)/m,

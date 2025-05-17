@@ -11,6 +11,9 @@ on:
 permissions:
   contents: write
 
+env:
+  CI: true
+
 jobs:
   publish:
     runs-on: ubuntu-latest
