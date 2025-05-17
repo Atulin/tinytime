@@ -4,7 +4,7 @@ import { tinytime } from "../src/tinytime.js";
 // My birthday!
 const date = new Date("September 24, 1992 021:07:30");
 
-// Helper function to render template with the same date.
+// Helper function to render a template with the same date.
 const render = (template: string) => tinytime(template).render(date);
 
 describe("tinytime", () => {

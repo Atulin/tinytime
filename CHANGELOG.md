@@ -2,8 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.0"></a>
+## [1.2.0](https://github.com/atulin/tinytime/compare/v1.1.0...v1.2.0) (2025-05-17)
+
+### Features
+
+* Added exact date parsing with `parseExact` utility
+* Added date manipulation with `addToDate` utility
+* Improved build system with size reporting
+
 <a name="1.1.0"></a>
-## [1.1.0](https://github.com/atulin/tinytime/compare/v1.0.1...v1.1.0) (2017-06-08)
+## [1.1.0](https://github.com/atulin/tinytime/compare/v1.0.1...v1.1.0)
 
 ### Features
 
@@ -13,7 +22,7 @@ All notable changes to this project will be documented in this file. See [standa
 * Parser tokens are now typed and inlined as numbers instead of being strings
 
 <a name="1.0.0"></a>
-## [1.0.0](https://github.com/atulin/tinytime/compare/v0.2.6...v1.0.0) (2017-06-08)
+## [1.0.0](https://github.com/atulin/tinytime/compare/v0.2.6...v1.0.0)
 
 ### Features
 

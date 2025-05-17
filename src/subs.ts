@@ -1,5 +1,5 @@
 /**
- * We want to represent each subs. type as minimally as possible,
+ * We want to represent each sub. type as minimally as possible,
  * so instead of using strings we just use numbers, which lets us
  * represent 27 individual subs. using a single number each.
  */

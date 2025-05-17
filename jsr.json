@@ -1,7 +1,11 @@
 {
 	"$schema": "https://jsr.io/schema/config-file.v1.json",
 	"name": "@angius/tinytime",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"license": "MIT",
-	"exports": "./src/tinytime.ts"
+	"exports": {
+		".": "./src/tinytime.ts",
+		"./addToDate": "./src/utils/addToDate.ts",
+		"./parseExact": "./src/utils/parseExact.ts"
+	}
 }

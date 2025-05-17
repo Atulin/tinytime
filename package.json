@@ -1,14 +1,33 @@
 {
 	"name": "@angius/tinytime",
-	"version": "1.1.0",
-	"exports": ["./dist/tinytime.js", "./dist/tinytime.min.js"],
+	"version": "1.2.0",
+	"exports": {
+		".": {
+			"types": "./dist/tinytime.d.ts",
+			"import": "./dist/tinytime.js",
+			"require": "./dist/tinytime.js"
+		},
+		"./addtoDate": {
+			"types": "./dist/addToDate.d.ts",
+			"import": "./dist/addToDate.js",
+			"require": "./dist/addToDate.js"
+		},
+		"./parseExact": {
+			"types": "./dist/parseExact.d.ts",
+			"import": "./dist/parseExact.js",
+			"require": "./dist/parseExact.js"
+		}
+	},
+	"files": ["dist"],
+	"main": "./dist/tinytime.js",
+	"module": "./dist/tinytime.js",
 	"types": "./dist/tinytime.d.ts",
 	"license": "MIT",
 	"keywords": ["date", "time", "formatter"],
 	"type": "module",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Atulin/tinytime"
+		"url": "git+https://github.com/Atulin/tinytime.git"
 	},
 	"scripts": {
 		"build": "bun ./build.ts",

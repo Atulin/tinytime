@@ -13,10 +13,11 @@
 * Proper type definitions
 * More correct code
 * ESM-only
+* Additional [utilities](#utils)
 
 ## API
 
-tinytime exports a single function that returns a template object. This object has a single method, `render`, which
+Tinytime exports a single function that returns a template object. This object has a single method, `render`, which
 takes a `Date` and returns a string with the rendered data.
 
 ```js
@@ -50,12 +51,66 @@ template.render(new Date());
 > const template = tinytime('{Mo}', { padMonth: true })
 > ```
 
+## Utils
+
+Tinytime now comes with two utility functions exported from `tinytime/utils`
+
+### Date parsing
+
+The `parseExact(string, string)` function can be used to easily parse a date string according to a specified format.
+
+```ts
+import { parseExact } from "tinytime/parseExact";
+
+const date = parseExact("05 21 1997 (at 06:37:00 PM)", "MM dd yyyy (at hh:mm:ss aa)");
+
+console.assert(date === new Date("1997-05-21T18:37:00Z")); // assertion passes
+```
+
+The format tokens are as follows:
+
+* `y` - year
+* `M` - month
+* `d` - date
+* `h` - hours
+* `m` - minutes
+* `s` - seconds
+* `i` - milliseconds
+* `a` - AM/PM
+
+### Date manipulation
+
+The `addToDate(Date, DateDelta)` function can be used to add a desired delta to a given date.
+
+```ts
+import { addToDate } from "tinytime/addToDate"
+
+const now = Date.now(); // 2025-05-17T15:08:00.000Z
+
+const future = addToDate(now, { days: 3, years: 100, hours: 761 });
+
+future.toISOString(); // 2125-06-21T08:08:00.000Z
+```
+
+The `DateDelta` is defined as follows:
+
+```ts
+interface DateDelta {
+    years?: number;
+    months?: number;
+    days?: number;
+    hours?: number;
+    minutes?: number;
+    seconds?: number;
+    milliseconds?: number;
+}
+```
 
 ## Efficiency
 
-tinytime takes an approach similar to a compiler and generates an AST representing your template. This AST is generated when
-you call the main `tinytime` function. This lets you efficiently re-render your template without tinytime having to parse the
-template string again. That means its important that you aren't recreating the template object frequently.
+Tinytime takes an approach similar to a compiler and generates an AST representing your template. This AST is generated when
+you call the main `tinytime` function. This lets you efficiently re-render your template without Tinytime having to parse the
+template string again. That means it's important that you aren't recreating the template object frequently.
 
 Here's an example showing the right and wrong way to use tinytime with React.
 
@@ -71,7 +126,7 @@ function Time({ date }) {
 }
 ```
 
-Instead, only create the template object once, and just re-render it.
+Instead, only create the template object once and re-render it.
 
 ```jsx
 const template = tinytime('{h}:{mm}:{ss}{a}');
@@ -82,6 +137,29 @@ function Time({ date }) {
     </div>
   )
 }
+```
+
+## Current bundle size
+
+```x-sizes
+dist\addToDate.js      402  bytes
+dist\addToDate.js      246  bytes (GZIP)
+dist\addToDate.js      228  bytes (DEFLATE)
+dist\addToDate.min.js  270  bytes
+dist\addToDate.min.js  195  bytes (GZIP)
+dist\addToDate.min.js  177  bytes (DEFLATE)
+dist\parseExact.js     1083 bytes
+dist\parseExact.js     563  bytes (GZIP)
+dist\parseExact.js     545  bytes (DEFLATE)
+dist\parseExact.min.js 636  bytes
+dist\parseExact.min.js 450  bytes (GZIP)
+dist\parseExact.min.js 432  bytes (DEFLATE)
+dist\tinytime.js       3674 bytes
+dist\tinytime.js       1252 bytes (GZIP)
+dist\tinytime.js       1234 bytes (DEFLATE)
+dist\tinytime.min.js   1278 bytes
+dist\tinytime.min.js   771  bytes (GZIP)
+dist\tinytime.min.js   753  bytes (DEFLATE)
 ```
 
 ### Babel Plugins
